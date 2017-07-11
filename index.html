@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+<body>
+  <div class="calendar-month-panel">
+    <div class="calendar-month-prev" style="float:left">
+      <
+    </div>
+    <div class = "calendar-month">
+      <span class="cur_month">Jun</span>
+      <br>
+      <span class = "cur_year">22</span>
+    </div>
+    <div class="calendar-month-next" style="float:right">
+      >
+    </div>
+  </div>
+  <div class="calendar-day-panel">
+    <div class="calendar-day">
+      Su
+    </div>
+    <div class="calendar-day">
+      Mo
+    </div>
+    <div class="calendar-day">
+      Tu
+    </div>
+    <div class="calendar-day">
+      We
+    </div>
+    <div class="calendar-day">
+      Th
+    </div>
+    <div class="calendar-day">
+      Fr
+    </div>
+    <div class="calendar-day">
+      Sa
+    </div>
+  </div>
+  <div class="calendar-dates-panel">
+  </div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="calendar.js"></script>
+<script type="text/javascript" src= "grid.js"></script>
+
+<script type="text/javascript">
+
+var today = new Date();
+var calendar = new Calendar(today);
+
+/* initialization */
+$(".cur_month").html(calendar.months[calendar.today_month]);
+$(".cur_year").html(calendar.today_year);
+
+var ROW_MAX = 7;
+var COL_MAX = 6;
+
+var grid = new Grid(ROW_MAX, COL_MAX);
+grid.initGrid();
+
+$(document).on("click", ".calendar-month-next", function(){
+  calendar.nextMonth();
+});
+
+$(document).on("click", ".calendar-month-prev", function(){
+  calendar.previousMonth();
+});
+</script>

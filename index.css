@@ -1,0 +1,61 @@
+.calendar-day-panel{
+  height: 50px;
+  width: 35em;
+  background-color: rgb(101, 224, 90);
+  text-align: center;
+}
+.calendar-day{
+  float: left;
+  height: 45px;
+  width: 5em;
+  /*padding-top: 15px;*/
+}
+.calendar-month-panel{
+  height: 70px;
+  width: 35em;
+  background-color: rgb(92, 210, 236);
+  text-align: center;
+}
+.calendar-month{
+  padding-top: 10px;
+  display: inline-block;
+}
+.cur_month{
+  font-size: 30px;
+}
+.cur_year{
+  font-size: 20px;
+}
+.calendar-month-prev{
+  font-size: 32px;
+  color: black;
+  padding-top: 15px;
+  padding-left: 30px;
+}
+.calendar-month-next{
+  font-size: 32px;
+  color: black;
+  padding-top: 15px;
+  padding-right: 30px;
+}
+.calendar-month-prev:hover{
+  cursor: pointer;
+}
+.calendar-month-next:hover{
+  cursor:pointer;
+}
+
+.calendar-dates-panel{
+  width: 35em;
+  height: 24em;
+  /*background-color: rgb(101, 227, 166);*/
+}
+
+.calendar-dates{
+  height: 4em;
+  width: 5em;
+  background-color: rgba(227, 246, 110, 0.49);
+  float: left;
+  text-align: center;
+
+}
