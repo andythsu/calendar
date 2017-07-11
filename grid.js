@@ -22,40 +22,37 @@ class Grid{
   initValue(){
     var today = new Date();
     var dummy = new Date(today.setDate(today.getDate()-(today.getDate()-1))); //set it to first date of the month
-    var dummy_first_day = dummy.getDay();
-    var dummy_month = dummy.getMonth();
-    this.grid[0][dummy_first_day] = dummy.getDate();
-    this.fillInDaysBeforeFirstDay(dummy_first_day);
-
-    this.refreshGridValues(dummy);
+    this.mainCalculation(dummy);
     this.plotGrid();
   }
 
   refresh(year, month_index){
-    this.clearGrid();
     var day = new Date(year, month_index);
     var dummy = new Date(day.setDate(day.getDate()-(day.getDate()-1))); //set it to first date of the month
+    this.clearGrid(); //clear the grid value before processing to next grid
+    this.mainCalculation(dummy);
+    this.plotGrid();
+  }
+
+  mainCalculation(dummy){
     var dummy_first_day = dummy.getDay();
     var dummy_month = dummy.getMonth();
     this.grid[0][dummy_first_day] = dummy.getDate();
     this.fillInDaysBeforeFirstDay(dummy_first_day);
-
     this.refreshGridValues(dummy);
-    this.plotGrid();
   }
-
-
 
   refreshGridValues(dummy){
     var dummy_month = dummy.getMonth();
     for (var row = 0; row < this.max_row; row++) {
       for (var col = 0; col < this.grid[row].length; col++) {
         if (this.grid[row][col] === null || this.grid[row][col] == dummy.getDate()) {
+          //skips all the null days and day 1
           continue;
         }else{
           dummy.setDate(dummy.getDate()+1);
           if (dummy.getMonth() != dummy_month) {
-            this.grid[row][col] = null;
+            this.grid[row][col] = null; //fills in null for the remaining days after the last day of the month
           }else{
             this.grid[row][col] = dummy.getDate();
           }
@@ -64,6 +61,8 @@ class Grid{
     }
   }
 
+
+  /////////////////////////////////////
   plotGrid(){
     for (var row = 0; row < this.max_row; row++) {
       for (var col = 0; col < this.grid[row].length; col++) {
@@ -81,7 +80,7 @@ class Grid{
 
   fillInDaysBeforeFirstDay(dummy_first_day){
     for (var i = 0; i < dummy_first_day; i++) {
-      this.grid[0][i] = null;
+      this.grid[0][i] = null; //fills in null for the days before first day of the month
     }
   }
 
