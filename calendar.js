@@ -10,48 +10,59 @@ class Calendar{
       "cur_month" : $(".cur_month"),
       "calendar_dates" : $(".calendar-dates")
     };
+    this.ROW_MAX = 6;
+    this.COL_MAX = 7;
+    this.grid = new Grid(this.ROW_MAX, this.COL_MAX);
   }
 
   nextMonth(){
     var self = this;
     var current_month = self.dom['cur_month'].html();
     var index = self.months.indexOf(current_month);
+    var new_month, new_month_index;
+    var cur_year = self.dom['cur_year'].html();
+    cur_year = parseInt(cur_year);
     if (index < 0) {
       console.log("error: index not in array");
     }else{
       if (index == 11) {
-        self.dom['cur_month'].html(self.months[0]);
-        var cur_year = self.dom['cur_year'].html();
-        self.dom['cur_year'].html(parseInt(cur_year)+1);
+        new_month_index = 0;
+        new_month = self.months[new_month_index];
+        self.dom['cur_month'].html(new_month);
+        cur_year = cur_year + 1;
+        self.dom['cur_year'].html(cur_year);
       }else{
-        self.dom['cur_month'].html(self.months[index+1]);
+        new_month_index = index+1;
+        new_month = self.months[new_month_index];
+        self.dom['cur_month'].html(new_month);
       }
     }
+    this.grid.refresh(cur_year, new_month_index);
   }
 
   previousMonth(){
     var self = this;
+    var new_month, new_month_index;
     var current_month = self.dom['cur_month'].html();
     var index = self.months.indexOf(current_month);
+    var cur_year = self.dom['cur_year'].html();
+    cur_year = parseInt(cur_year);
     if (index < 0) {
       console.log("error: index not in array");
     }else{
       if (index == 0) {
-        self.dom['cur_month'].html(self.months[11]);
-        var cur_year = self.dom['cur_year'].html();
-        self.dom['cur_year'].html(parseInt(cur_year)-1);
+        new_month_index = 11;
+        new_month = self.months[new_month_index];
+        cur_year = cur_year-1;
+        self.dom['cur_month'].html(new_month);
+        self.dom['cur_year'].html(cur_year);
       }else{
-        self.dom['cur_month'].html(self.months[index-1]);
+        new_month_index = index-1;
+        new_month = self.months[new_month_index];
+        self.dom['cur_month'].html(new_month);
       }
     }
-  }
-
-  plotDates(){
-    for (var row = 0; row < ROW_MAX; row++) {
-      for (var col = 0; col < COL_MAX; col++) {
-        $().html();
-      }
-    }
+    this.grid.refresh(cur_year, new_month_index);
   }
 
 }

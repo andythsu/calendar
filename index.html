@@ -62,11 +62,6 @@ var calendar = new Calendar(today);
 $(".cur_month").html(calendar.months[calendar.today_month]);
 $(".cur_year").html(calendar.today_year);
 
-var ROW_MAX = 7;
-var COL_MAX = 6;
-
-var grid = new Grid(ROW_MAX, COL_MAX);
-grid.initGrid();
 
 $(document).on("click", ".calendar-month-next", function(){
   calendar.nextMonth();
