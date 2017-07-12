@@ -13,9 +13,9 @@
       <
     </div>
     <div class = "calendar-month">
-      <span class="cur_month">Jun</span>
+      <span class="cur_month"></span>
       <br>
-      <span class = "cur_year">22</span>
+      <span class = "cur_year"></span>
     </div>
     <div class="calendar-month-next" style="float:right">
       >
@@ -55,19 +55,19 @@
 
 <script type="text/javascript">
 
-var today = new Date();
-var calendar = new Calendar(today);
+  var today = new Date();
+  var calendar = new Calendar(today);
 
-/* initialization */
-$(".cur_month").html(calendar.months[calendar.today_month]);
-$(".cur_year").html(calendar.today_year);
+  /* initialization */
+  $(".cur_month").html(calendar.months[calendar.today_month]);
+  $(".cur_year").html(calendar.today_year);
 
 
-$(document).on("click", ".calendar-month-next", function(){
-  calendar.nextMonth();
-});
+  $(document).on("click", ".calendar-month-next", function(){
+    calendar.nextMonth();
+  });
 
-$(document).on("click", ".calendar-month-prev", function(){
-  calendar.previousMonth();
-});
+  $(document).on("click", ".calendar-month-prev", function(){
+    calendar.previousMonth();
+  });
 </script>
