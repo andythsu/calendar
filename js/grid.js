@@ -11,6 +11,7 @@ class Grid{
     this.initGrid();
     this.initValue();
   }
+  
   initGrid(){
     $(".calendar-dates").remove(); //remove duplicated divs
     for (var row = 0; row < this.max_row; row++) {
