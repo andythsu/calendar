@@ -57,5 +57,9 @@
   background-color: rgba(227, 246, 110, 0.49);
   float: left;
   text-align: center;
+}
 
+.after, .before{
+  color: lightgrey;
+  /*background-color: lightgrey;*/
 }
