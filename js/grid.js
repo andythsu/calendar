@@ -11,7 +11,7 @@ class Grid{
     this.initGrid();
     this.initValue();
   }
-  
+
   initGrid(){
     $(".calendar-dates").remove(); //remove duplicated divs
     for (var row = 0; row < this.max_row; row++) {
@@ -29,7 +29,7 @@ class Grid{
   }
 
   refresh(year, month_index){
-    var day = new Date(year, month_index);
+    var day = new Date(year, month_index); // creates a new date based on given year and month
     var dummy = new Date(day.setDate(day.getDate()-(day.getDate()-1))); //set it to first date of the month
     this.clearGridValue(); //clear the grid value before processing to next grid
     this.initGrid(); //re-initialize the grid
@@ -44,7 +44,7 @@ class Grid{
     this.fillInNullBeforeFirstDay(dummy); //fills in null first before the first date
     this.fillInDatesInMonth(dummy); //fills in the rest
     this.fillInPrevMonthDates(dummy); //convert the first nulls to previous month dates
-    this.fillInNextMonthDates(); //convert the last nulls to next month dates
+    this.fillInNextMonthDates(dummy); //convert the last nulls to next month dates
   }
 
   fillInDatesInMonth(dummy){
@@ -67,14 +67,18 @@ class Grid{
     }
   }
 
-  fillInNextMonthDates(row,col){
-    var increment = 1;
+  fillInNextMonthDates(dummy){
+    var fullDate = new Date(dummy); // create a new instance
+    var month = fullDate.getMonth(); //current calendar month index
+    var next_month = month + 1; //next month index relative to current month (not current calendar month)
+    fullDate.setMonth(next_month); //set the month
+    var date = fullDate.getDate();
     for (var row = 0; row < this.grid.length; row++) {
       for (var col = 0; col < this.grid[row].length; col++) {
         if (this.grid[row][col] == null) {
-          this.grid[row][col] = increment;
+          this.grid[row][col] = date;
+          date = fullDate.getDate(fullDate.setDate(fullDate.getDate()+1));
           $("div[data-row="+row+"][data-col="+col+"]").addClass("after");
-          increment++;
         }
       }
     }
